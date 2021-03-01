@@ -8,10 +8,15 @@ class InlineInputController extends React.Component {
 
   // This is the way to select all text if mouse clicked
   onMouseDown = (e) => {
+    e.stopPropagation()
     if (document.activeElement != e.target) {
       e.preventDefault()
       this.refInput.focus()
     }
+  }
+
+  onClick = (e) => {
+    e.stopPropagation()
   }
 
   onBlur = () => {
@@ -63,6 +68,7 @@ class InlineInputController extends React.Component {
     return <InlineInput
       ref={this.setRef}
       border={border}
+      onClick={this.onClick}
       onMouseDown={this.onMouseDown}
       onFocus={this.onFocus}
       onBlur={this.onBlur}
